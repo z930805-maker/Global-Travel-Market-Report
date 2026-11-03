@@ -82,7 +82,7 @@ def main():
     # 3) 產生 history.html（限制近 30 期）
     dated_files_desc = list(reversed(dated_files))[:30]
     list_items = "\n".join(
-       f'        <li><a href="JP_reports/{os.path.basename(f)}">{d.replace("-", "/")} 觀光業看盤日報</a></li>'
+       f'        <li><a href="JP_reports/{os.path.basename(f)}">{d.replace("-", "/")} 全球市場日報</a></li>'
         for d, f in dated_files_desc
     )
     
@@ -92,7 +92,7 @@ def main():
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>日股觀光業看盤日報歷史紀錄</title>
+<title>全球市場日報歷史紀錄</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&display=swap" rel="stylesheet">
 <style>
   :root{{
@@ -123,7 +123,7 @@ def main():
 <body>
 <div class="page">
   <header>
-    <h1>日股觀光業看盤日報歷史紀錄</h1>
+    <h1>全球市場日報歷史紀錄</h1>
   </header>
   <nav class="site-nav">
     <a href="index.html">最新報表</a>
