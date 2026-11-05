@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>日股觀光業看盤日報 2026/10/29</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#ffffff; --panel:#ffffff; --ink:#1C2540; --ink2:#55607a; --muted:#8a92a6;
+    --line:#dfe3ea; --thbg:#eef1f5; --hd:#1C2540; --up:#C8102E; --dn:#12804A; --fl:#8b6914;
+    --badge-jp:#1f5fa8; --badge-hk:#12804A;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{background:var(--bg)}
+  body{font-family:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;color:var(--ink);
+    background:var(--bg);line-height:1.55;padding:30px 22px;font-variant-numeric:tabular-nums}
+  .wrap{max-width:1040px;margin:0 auto}
+  .mono{font-family:"JetBrains Mono","Noto Sans TC",monospace}
+
+  header{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:6px;
+    border-bottom:3px solid var(--ink);padding-bottom:12px;margin-bottom:20px}
+  header h1{font-size:23px;font-weight:900;letter-spacing:.02em}
+  header .sub{font-size:12px;color:var(--ink2);margin-top:3px}
+  header .date{text-align:right;font-size:14px;font-weight:700;color:var(--ink)}
+  header .date small{display:block;font-size:11px;font-weight:400;color:var(--ink2);margin-top:3px}
+
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+  .kpi-card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
+  .kpi-card .label{font-size:12px;color:var(--ink2);margin-bottom:5px}
+  .kpi-card .value{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:700;letter-spacing:-.01em}
+  .kpi-card .sub{font-family:"JetBrains Mono",monospace;font-size:12.5px;font-weight:500;margin-top:2px}
+
+  .highlights{background:#fafbfc;border:1px solid var(--line);border-radius:5px;padding:15px 18px;margin-bottom:26px}
+  .highlights h2{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.08em;margin-bottom:9px}
+  .highlights ul{list-style:none}
+  .highlights li{font-size:13.5px;line-height:1.85;padding-left:18px;position:relative}
+  .highlights li::before{content:"■";color:var(--up);position:absolute;left:0;font-size:9px;top:6px}
+  .highlights b{color:var(--up);font-family:"JetBrains Mono",monospace}
+  .highlights em{color:var(--dn);font-style:normal;font-family:"JetBrains Mono",monospace}
+
+  .group{margin-bottom:22px}
+  .group-head{background:var(--hd);color:#fff;padding:8px 14px;display:flex;justify-content:space-between;
+    align-items:center;font-size:14px;font-weight:700;letter-spacing:.04em;border-radius:4px 4px 0 0}
+  .group-head .unit{font-size:11px;font-weight:400;opacity:.8;margin-left:8px}
+  .group-head .badge{background:rgba(255,255,255,.18);padding:2px 10px;border-radius:10px;font-size:12px;font-weight:400}
+
+  .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  table{width:100%;border-collapse:collapse;background:var(--panel)}
+  thead th{background:var(--thbg);font-size:11.5px;color:var(--ink2);padding:8px 6px;
+    border-bottom:1px solid var(--line);font-weight:500;text-align:center;white-space:nowrap}
+  tbody td{font-size:13px;padding:7px 6px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+  td.name{text-align:left;padding-left:12px;font-weight:700}
+  td.num{font-family:"JetBrains Mono",monospace}
+  tbody tr:hover td{background:#f6f8fb}
+  .bx{display:inline-block;font-size:10.5px;padding:1px 6px;border-radius:3px;color:#fff;font-weight:500}
+  .bl{background:var(--badge-jp)} .bo{background:var(--badge-hk)}
+  .up{color:var(--up);font-weight:700} .dn{color:var(--dn);font-weight:700}
+  .fl{color:var(--fl);font-weight:700} .na{color:var(--muted)}
+  tr.stale td,tr.stale td.name,tr.stale td.num{color:var(--muted)!important;font-weight:400}
+  tr.stale td.name{font-weight:700}
+  .nt{display:inline-block;font-size:10px;font-weight:500;color:#fff;background:#8a92a6;border-radius:3px;padding:0 5px;margin-left:5px;vertical-align:1px}
+  .note{font-size:11px;color:var(--muted);padding:6px 4px 0}
+
+  footer{font-size:11px;color:var(--muted);margin-top:22px;padding-top:12px;border-top:1px solid var(--line);line-height:1.7}
+
+  .toggle{display:none}
+  .hint{display:none;font-size:11px;color:var(--ink2);text-align:right;padding:4px 2px 0}
+
+  @media (max-width:720px){
+    body{padding:14px 10px}
+    header{flex-direction:column;align-items:flex-start}
+    header .date{text-align:left}
+    .kpi-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+    .kpi-card .value{font-size:17px}
+    .hint{display:block}
+    /* 手機：全欄位保留、整張表可左右滑動；代號與名稱固定 */
+    thead th,tbody td{font-size:12px;padding:7px 5px}
+    thead th:nth-child(1),tbody td:nth-child(1){position:sticky;left:0;z-index:2;min-width:44px;background:#fff}
+    thead th:nth-child(2),tbody td:nth-child(2){position:sticky;left:44px;z-index:2;min-width:70px;background:#fff;box-shadow:2px 0 3px rgba(0,0,0,.06)}
+    thead th:nth-child(1),thead th:nth-child(2){background:var(--thbg)}
+    td.name{padding-left:6px}
+  }
+  @media print{
+    body{padding:0}
+    .toggle,.hint{display:none!important}
+    thead th:nth-child(n),tbody td:nth-child(n){display:table-cell!important;position:static!important}
+    thead th,tbody td{font-size:10.5px!important;padding:6px 3px!important}
+    .tscroll{overflow:visible}
+    @page{size:A4;margin:10mm}
+  }
+</style>
+<style>.chip{font-size:12px;font-weight:500;margin-left:12px;white-space:nowrap}.chip i{font-style:normal;margin-left:2px}.chip .up,.chip i.up{color:#ff8a98}.chip i.dn{color:#6fd9a0}.idx{flex:1;text-align:right;padding:0 12px}.group-head{flex-wrap:wrap;gap:4px 0}@media(max-width:720px){.idx{flex-basis:100%;order:3;text-align:left;padding:4px 0 0}.chip{margin:0 10px 0 0;display:inline-block}}</style></head>
+<body><div class="wrap">
+<header><div><h1>全球旅遊同業看盤日報</h1><p class="sub">日本／韓國／中國大陸／香港／美國　上市旅遊同業收盤彙整</p></div><div class="date">2026年11月05日（星期四）<small>美股為最近一個美國交易日（11/04）</small></div></header>
+<div class="kpi-row">
+<div class="kpi-card"><div class="label">全球同業 上漲／下跌家數</div><div class="value"><span class="up">16</span> ／ <span class="dn">2</span></div><div class="sub" style="color:var(--ink2)">18 檔有成交（途屹無成交不計）</div></div>
+<div class="kpi-card"><div class="label">全球 TTM PE 中位數</div><div class="value mono">13.85</div><div class="sub" style="color:var(--ink2)">倍；15 檔有效（虧損不計）</div></div>
+<div class="kpi-card"><div class="label">日本 TTM PE 中位數</div><div class="value mono">7.30</div><div class="sub" style="color:var(--ink2)">倍；3 檔有效，較全球低 6.55</div></div>
+<div class="kpi-card"><div class="label">有效 PE 檔數</div><div class="value mono">15 ／ 19</div><div class="sub" style="color:var(--ink2)">虧損 4 檔，不列 PE</div></div>
+</div>
+<div class="highlights"><h2>TODAY'S HIGHLIGHTS</h2><ul>
+<li>各國大盤：日經225 <em>−1.79%</em>（收 61,077.90）、KOSPI <em>−5.28%</em>（收 5,383.80）大跌；上證 <em>+0.10%</em>、深證成指 <em>+1.19%</em>、恒生 <em>+3.67%</em>；美股（11/04）S&amp;P 500 <em>+1.58%</em>、NASDAQ <em>+1.44%</em>。日韓大盤下跌，但日股 5 檔中 4 檔收紅、韓股 4 檔全數收紅，旅遊同業明顯逆勢。</li>
+<li>漲幅最大：<em>Expedia Group +10.54%</em>、Booking Holdings <em>+9.83%</em>（均為美股 11/04），日股 HIS <em>+8.67%</em> 居第三；攜程 Trip.com <em>+8.16%</em>、同程旅行 <em>+7.79%</em> 隨恒生大漲。</li>
+<li>成交額最大（原幣、各國不可直接比較）：日本：HIS ¥9.18 億；韓國：Lotte Tour Dev. ₩27.42 億；中國大陸：攜程 Trip.com HK$21.28 億；香港：港中旅 HK$0.12 億；美國：Booking Holdings US$24.90 億。</li>
+<li>跌幅最大：18 檔有成交者僅 2 檔收黑——途牛 Tuniu <em>−0.96%</em>（美股 11/04，成交量僅 989 股）、Hana Tour Japan <em>−0.53%</em>。</li>
+<li>估值（TTM PE，15 檔有效）：全球中位數 <b>13.85 倍</b>，日本中位數 <b>7.30 倍</b>，日本低於全球約 6.6 倍。較低者 Very Good Tour 4.32、途屹 4.73（流動性極低）、KNT 6.76；較高者 Modetour 33.46、Expedia 19.13、Booking 18.89。眾信（681 倍）與凱撒（155 倍）因 EPS 極小而失真；HIS、VELTRA、中青旅、港中旅 實績虧損，不列 PE。</li>
+<li>家數：有成交 18 檔中 <b>16 漲 2 跌</b>（美股 3 檔為 11/04 資料）；途屹控股無成交，不計入家數。</li></ul></div>
+<div class="group"><div class="group-head" style="border-left:8px solid #2F6FDE"><span>日本<span class="unit">單位：日圓（依各股交易幣別）</span></span><span class="idx"><span class="chip">日經225 <b>61,077.90</b> <i class="dn">▼ −1.79%</i></span></span><span class="badge">5 檔</span></div>
+<div class="hint">← 可左右滑動 →</div><div class="tscroll"><table><thead><tr><th>代號</th><th>名稱</th><th>交易所</th><th>資料日</th><th>成交量(股)</th><th>最高</th><th>最低</th><th>昨收</th><th>收盤</th><th>漲跌</th><th>漲幅%</th><th>TTM PE</th><th>市值(億)</th><th>成交額(億)</th></tr></thead><tbody>
+<tr><td class="num">9726</td><td class="name">KNT-CT</td><td><span class="bx bo">東證</span></td><td class="num">11/05</td><td class="num">28,400</td><td class="num">2,008</td><td class="num">1,944</td><td class="num">1,904</td><td class="num">1,995</td><td class="num up">+91</td><td class="num up">+4.78%</td><td class="num">6.76</td><td class="num">545.02</td><td class="num">0.57</td></tr>
+<tr><td class="num">6191</td><td class="name">AirTrip</td><td><span class="bx bo">東證</span></td><td class="num">11/05</td><td class="num">315,700</td><td class="num">1,445</td><td class="num">1,399</td><td class="num">1,397</td><td class="num">1,440</td><td class="num up">+43</td><td class="num up">+3.08%</td><td class="num">13.85</td><td class="num">285.27</td><td class="num">4.55</td></tr>
+<tr><td class="num">9603</td><td class="name">HIS</td><td><span class="bx bo">東證</span></td><td class="num">11/05</td><td class="num">823,200</td><td class="num">1,115</td><td class="num">1,077</td><td class="num">1,026</td><td class="num">1,115</td><td class="num up">+89</td><td class="num up">+8.67%</td><td class="num"><span class="na">虧損</span></td><td class="num">833.63</td><td class="num">9.18</td></tr>
+<tr><td class="num">6561</td><td class="name">Hana Tour Japan</td><td><span class="bx bo">東證</span></td><td class="num">11/05</td><td class="num">11,900</td><td class="num">769</td><td class="num">746</td><td class="num">756</td><td class="num">752</td><td class="num dn">−4</td><td class="num dn">−0.53%</td><td class="num">7.30</td><td class="num">94.42</td><td class="num">0.09</td></tr>
+<tr><td class="num">7048</td><td class="name">VELTRA</td><td><span class="bx bo">東證</span></td><td class="num">11/05</td><td class="num">80,300</td><td class="num">134</td><td class="num">130</td><td class="num">128</td><td class="num">132</td><td class="num up">+4</td><td class="num up">+3.13%</td><td class="num"><span class="na">虧損</span></td><td class="num">48.32</td><td class="num">0.11</td></tr>
+</tbody></table></div></div>
+<div class="group"><div class="group-head" style="border-left:8px solid #12804A"><span>韓國<span class="unit">單位：韓圜（依各股交易幣別）</span></span><span class="idx"><span class="chip">KOSPI <b>5,383.80</b> <i class="dn">▼ −5.28%</i></span></span><span class="badge">4 檔</span></div>
+<div class="hint">← 可左右滑動 →</div><div class="tscroll"><table><thead><tr><th>代號</th><th>名稱</th><th>交易所</th><th>資料日</th><th>成交量(股)</th><th>最高</th><th>最低</th><th>昨收</th><th>收盤</th><th>漲跌</th><th>漲幅%</th><th>TTM PE</th><th>市值(億)</th><th>成交額(億)</th></tr></thead><tbody>
+<tr><td class="num">039130</td><td class="name">Hanatour Service</td><td><span class="bx bo">KOSPI</span></td><td class="num">11/05</td><td class="num">73,253</td><td class="num">29,550</td><td class="num">28,600</td><td class="num">28,100</td><td class="num">28,600</td><td class="num up">+500</td><td class="num up">+1.78%</td><td class="num">10.84</td><td class="num">4,194.24</td><td class="num">20.95</td></tr>
+<tr><td class="num">032350</td><td class="name">Lotte Tour Dev.</td><td><span class="bx bo">KOSPI</span></td><td class="num">11/05</td><td class="num">259,404</td><td class="num">10,670</td><td class="num">10,290</td><td class="num">10,250</td><td class="num">10,570</td><td class="num up">+320</td><td class="num up">+3.12%</td><td class="num">15.57</td><td class="num">8,426.98</td><td class="num">27.42</td></tr>
+<tr><td class="num">080160</td><td class="name">Modetour Network</td><td><span class="bx bo">KOSDAQ</span></td><td class="num">11/05</td><td class="num">87,304</td><td class="num">9,850</td><td class="num">9,460</td><td class="num">9,470</td><td class="num">9,770</td><td class="num up">+300</td><td class="num up">+3.17%</td><td class="num">33.46</td><td class="num">1,846.53</td><td class="num">8.53</td></tr>
+<tr><td class="num">094850</td><td class="name">Very Good Tour</td><td><span class="bx bo">KOSDAQ</span></td><td class="num">11/05</td><td class="num">23,289</td><td class="num">3,940</td><td class="num">3,690</td><td class="num">3,685</td><td class="num">3,780</td><td class="num up">+95</td><td class="num up">+2.58%</td><td class="num">4.32</td><td class="num">510.30</td><td class="num">0.88</td></tr>
+</tbody></table></div></div>
+<div class="group"><div class="group-head" style="border-left:8px solid #C8102E"><span>中國大陸<span class="unit">單位：港幣／美元／人民幣（依各股交易幣別）</span></span><span class="idx"><span class="chip">上證 <b>3,689.91</b> <i class="up">▲ +0.10%</i></span><span class="chip">深證成指 <b>11,471.09</b> <i class="up">▲ +1.19%</i></span></span><span class="badge">7 檔</span></div>
+<div class="hint">← 可左右滑動 →</div><div class="tscroll"><table><thead><tr><th>代號</th><th>名稱</th><th>交易所</th><th>資料日</th><th>成交量(股)</th><th>最高</th><th>最低</th><th>昨收</th><th>收盤</th><th>漲跌</th><th>漲幅%</th><th>TTM PE</th><th>市值(億)</th><th>成交額(億)</th></tr></thead><tbody>
+<tr><td class="num">9961.HK</td><td class="name">攜程 Trip.com</td><td><span class="bx bo">港交所</span></td><td class="num">11/05</td><td class="num">6,039,124</td><td class="num">354.200</td><td class="num">335.000</td><td class="num">325.800</td><td class="num">352.400</td><td class="num up">+26.600</td><td class="num up">+8.16%</td><td class="num">8.13</td><td class="num">2,228.33</td><td class="num">21.28</td></tr>
+<tr><td class="num">0780.HK</td><td class="name">同程旅行</td><td><span class="bx bo">港交所</span></td><td class="num">11/05</td><td class="num">14,448,895</td><td class="num">11.420</td><td class="num">10.730</td><td class="num">10.520</td><td class="num">11.340</td><td class="num up">+0.820</td><td class="num up">+7.79%</td><td class="num">9.18</td><td class="num">266.97</td><td class="num">1.64</td></tr>
+<tr><td class="num">600138</td><td class="name">中青旅</td><td><span class="bx bo">上交所</span></td><td class="num">11/05</td><td class="num">8,057,895</td><td class="num">6.88</td><td class="num">6.75</td><td class="num">6.77</td><td class="num">6.86</td><td class="num up">+0.09</td><td class="num up">+1.33%</td><td class="num"><span class="na">虧損</span></td><td class="num">49.66</td><td class="num">0.55</td></tr>
+<tr><td class="num">002707</td><td class="name">眾信旅遊</td><td><span class="bx bo">深交所</span></td><td class="num">11/05</td><td class="num">24,769,111</td><td class="num">5.40</td><td class="num">5.15</td><td class="num">5.17</td><td class="num">5.38</td><td class="num up">+0.21</td><td class="num up">+4.06%</td><td class="num">681.01</td><td class="num">52.87</td><td class="num">1.33</td></tr>
+<tr><td class="num">TOUR</td><td class="name">途牛 Tuniu</td><td><span class="bx bo">納斯達克</span></td><td class="num">11/04</td><td class="num">989</td><td class="num">4.75</td><td class="num">4.68</td><td class="num">4.78</td><td class="num">4.73</td><td class="num dn">−0.05</td><td class="num dn">−0.96%</td><td class="num">15.61</td><td class="num">0.52</td><td class="num">0.00</td></tr>
+<tr><td class="num">000796</td><td class="name">凱撒旅遊</td><td><span class="bx bo">深交所</span></td><td class="num">11/05</td><td class="num">31,059,400</td><td class="num">3.37</td><td class="num">3.27</td><td class="num">3.27</td><td class="num">3.37</td><td class="num up">+0.10</td><td class="num up">+3.06%</td><td class="num">155.30</td><td class="num">54.05</td><td class="num">1.05</td></tr>
+<tr class=stale><td class="num">1701.HK</td><td class="name">途屹控股<span class="nt">無成交</span></td><td><span class="bx bo">港交所</span></td><td class="num">11/04</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td class="num">0.064</td><td class="num">0.064</td><td class="num ">0.000</td><td class="num ">0.00%</td><td class="num">4.73</td><td class="num">0.64</td><td class="num">0.00</td></tr>
+</tbody></table></div></div>
+<div class="group"><div class="group-head" style="border-left:8px solid #D9A400"><span>香港<span class="unit">單位：港幣（依各股交易幣別）</span></span><span class="idx"><span class="chip">恒生 <b>24,796.98</b> <i class="up">▲ +3.67%</i></span></span><span class="badge">1 檔</span></div>
+<div class="hint">← 可左右滑動 →</div><div class="tscroll"><table><thead><tr><th>代號</th><th>名稱</th><th>交易所</th><th>資料日</th><th>成交量(股)</th><th>最高</th><th>最低</th><th>昨收</th><th>收盤</th><th>漲跌</th><th>漲幅%</th><th>TTM PE</th><th>市值(億)</th><th>成交額(億)</th></tr></thead><tbody>
+<tr><td class="num">0308.HK</td><td class="name">港中旅</td><td><span class="bx bo">港交所</span></td><td class="num">11/05</td><td class="num">10,788,000</td><td class="num">1.170</td><td class="num">1.140</td><td class="num">1.145</td><td class="num">1.150</td><td class="num up">+0.005</td><td class="num up">+0.44%</td><td class="num"><span class="na">虧損</span></td><td class="num">63.67</td><td class="num">0.12</td></tr>
+</tbody></table></div></div>
+<div class="group"><div class="group-head" style="border-left:8px solid #7B3FC4"><span>美國<span class="unit">單位：美元（依各股交易幣別）</span></span><span class="idx"><span class="chip">S&amp;P 500（11/04） <b>7,688.62</b> <i class="up">▲ +1.58%</i></span><span class="chip">NASDAQ（11/04） <b>25,736.51</b> <i class="up">▲ +1.44%</i></span></span><span class="badge">2 檔</span></div>
+<div class="hint">← 可左右滑動 →</div><div class="tscroll"><table><thead><tr><th>代號</th><th>名稱</th><th>交易所</th><th>資料日</th><th>成交量(股)</th><th>最高</th><th>最低</th><th>昨收</th><th>收盤</th><th>漲跌</th><th>漲幅%</th><th>TTM PE</th><th>市值(億)</th><th>成交額(億)</th></tr></thead><tbody>
+<tr><td class="num">EXPE</td><td class="name">Expedia Group</td><td><span class="bx bo">納斯達克</span></td><td class="num">11/04</td><td class="num">4,321,528</td><td class="num">326.40</td><td class="num">295.26</td><td class="num">285.77</td><td class="num">315.88</td><td class="num up">+30.11</td><td class="num up">+10.54%</td><td class="num">19.13</td><td class="num">379.04</td><td class="num">13.65</td></tr>
+<tr><td class="num">BKNG</td><td class="name">Booking Holdings</td><td><span class="bx bo">納斯達克</span></td><td class="num">11/04</td><td class="num">14,561,314</td><td class="num">174.09</td><td class="num">160.00</td><td class="num">155.67</td><td class="num">170.97</td><td class="num up">+15.30</td><td class="num up">+9.83%</td><td class="num">18.89</td><td class="num">1,295.95</td><td class="num">24.90</td></tr>
+</tbody></table></div></div>
+
+<div class="note">※ 途屹控股（1701.HK）今日無成交：整列灰字，收盤為最近結算價（11/04），漲跌 0、成交量與成交額 0，最高／最低以「—」表示，不計入家數；其 PE 與市值以該結算價計算。美股（Booking、Expedia、途牛）為最近一個美國交易日 11/04 的資料，與亞洲市場日期不同，漲跌不可直接比較。</div>
+<footer>資料來源：Google Sheet「全球同業股市資料」（含「統計」分頁）／Yahoo Finance（約 15–20 分鐘延遲）；系統更新時間 2026-11-05 17:25。股數、EPS 來自各國官方揭露（TDnet、DART、巨潮資訊網、HKEXnews、SEC EDGAR），來源與更新日見試算表。<br>① 各國交易幣別不同（日圓、韓圜、人民幣、港幣、美元），市值與成交額為「原幣、億」，跨國不可直接加總；成交額＝收盤×成交量。PE 無幣別，是跨國比較的主要指標。<br>② TTM PE＝收盤 ÷ 最近 12 個月實績 EPS（最新年度 − 去年同期累計 + 今年累計）；EPS 幣別與股價不同時以即時匯率換算（CNY/HKD 1.176、CNY/USD 0.15）；虧損顯示「虧損」。全球版不含預估PE。<br>③ 市值＝收盤價 × 流通股數。攜程股數為 2026 Q2 加權平均、Booking 為約數、Very Good Tour 為加權平均推算、Lotte Tour 與凱撒旅遊的庫藏股未確認、途牛為 2025/12/31 年報封面數（以 ADS 計），以上待核對；AirTrip 為買回庫藏後手動值。<br>④ PE 低不一定便宜、高不一定貴：旅遊業獲利波動大，眾信、凱撒受去年第四季損益影響，EPS 極小、PE 失真，僅供參考；各國會計年度與股數口徑不同，PE 僅供相對比較。<br>⑤ 本報告僅供內部參考，不構成投資建議。</footer>
+</div></body></html>
