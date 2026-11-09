@@ -26,11 +26,17 @@
   header .date{text-align:right;font-size:14px;font-weight:700;color:var(--ink)}
   header .date small{display:block;font-size:11px;font-weight:400;color:var(--ink2);margin-top:3px;max-width:360px}
 
-  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:24px}
+  .kpi-row{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-bottom:14px}
   .kpi-card{background:var(--panel);border:1px solid var(--line);border-radius:5px;padding:12px 14px}
   .kpi-card .label{font-size:12px;color:var(--ink2);margin-bottom:5px}
   .kpi-card .value{font-family:"JetBrains Mono",monospace;font-size:20px;font-weight:700;letter-spacing:-.01em}
   .kpi-card .sub{font-family:"JetBrains Mono",monospace;font-size:12px;font-weight:500;margin-top:2px;color:var(--ink2)}
+
+  .kpi-row-region{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:24px}
+  .kpi-row-region .kpi-card{padding:10px 12px}
+  .kpi-row-region .kpi-card .label{font-size:11px;margin-bottom:4px}
+  .kpi-row-region .kpi-card .value{font-size:16px}
+  .kpi-row-region .kpi-card .sub{font-size:10.5px}
 
   .highlights{background:#fafbfc;border:1px solid var(--line);border-radius:5px;padding:15px 18px;margin-bottom:26px}
   .highlights h2{font-size:13px;font-weight:700;color:var(--ink);letter-spacing:.08em;margin-bottom:9px}
@@ -78,7 +84,8 @@
     body{padding:14px 10px}
     header{flex-direction:column;align-items:flex-start}
     header .date{text-align:left}
-    .kpi-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
+    .kpi-row{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:10px}
+    .kpi-row-region{grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:16px}
     .kpi-card .value{font-size:17px}
     .hint{display:block}
     .group-head{flex-direction:column;align-items:flex-start;gap:4px}
@@ -120,8 +127,14 @@
   <div class="kpi-row">
     <div class="kpi-card"><div class="label">全球同業 上漲／下跌家數</div><div class="value"><span class="up">7</span> ／ <span class="dn">12</span></div><div class="sub">19 檔，無無成交個股</div></div>
     <div class="kpi-card"><div class="label">全球 TTM PE 中位數</div><div class="value mono">14.15 倍</div><div class="sub">有效 15／19 檔，中位數為 AirTrip(6191)</div></div>
-    <div class="kpi-card"><div class="label">日本 TTM PE 中位數</div><div class="value mono">6.92 倍</div><div class="sub">低於全球中位數約 7.23 倍</div></div>
-    <div class="kpi-card"><div class="label">有效 PE 檔數</div><div class="value mono">15 ／ 19</div><div class="sub">虧損 4 檔不列：HIS、VELTRA、中青旅、港中旅</div></div>
+  </div>
+
+  <div class="kpi-row-region">
+    <div class="kpi-card"><div class="label">日圓 PE 中位數</div><div class="value mono">6.92 倍</div><div class="sub">有效 3／5 檔</div></div>
+    <div class="kpi-card"><div class="label">韓圜 PE 中位數</div><div class="value mono">13.13 倍</div><div class="sub">有效 4／4 檔</div></div>
+    <div class="kpi-card"><div class="label">港幣 PE 中位數</div><div class="value mono">7.97 倍</div><div class="sub">有效 3／4 檔</div></div>
+    <div class="kpi-card"><div class="label">人民幣 PE 中位數</div><div class="value mono na">410.44 倍</div><div class="sub">有效僅 2／3 檔，失真</div></div>
+    <div class="kpi-card"><div class="label">美元 PE 中位數</div><div class="value mono">15.48 倍</div><div class="sub">有效 3／3 檔</div></div>
   </div>
 
   <div class="highlights">
